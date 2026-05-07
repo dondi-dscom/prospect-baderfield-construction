@@ -89,6 +89,7 @@
       color: var(--dark);
       background: var(--accent);
       padding: 10px 22px;
+      border-radius: 6px;
       text-decoration: none;
       transition: opacity 0.2s;
     }
@@ -128,9 +129,13 @@
       color: var(--accent);
       margin-bottom: 28px;
       position: relative;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 12px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(184,151,106,0.2);
+      padding: 6px 14px 6px 10px;
+      border-radius: 999px;
     }
     .hero-tag::before {
       content: '';
@@ -163,7 +168,7 @@
       background: var(--accent); color: var(--dark);
       font-family: var(--body); font-weight: 500; font-size: 0.82rem;
       letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 14px 28px; text-decoration: none;
+      padding: 14px 28px; border-radius: 8px; text-decoration: none;
       transition: opacity 0.2s, transform 0.3s var(--ease);
     }
     .btn-main:hover { opacity: 0.88; transform: translateY(-1px); }
@@ -173,7 +178,7 @@
       border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
       font-family: var(--body); font-weight: 400; font-size: 0.82rem;
       letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 14px 28px; text-decoration: none;
+      padding: 14px 28px; border-radius: 8px; text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
     }
     .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
@@ -257,6 +262,7 @@
       padding: 44px 40px;
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      border-radius: 0;
       transition: background 0.35s var(--ease);
       cursor: default;
     }
@@ -383,6 +389,7 @@
       padding: 52px 48px;
       background: var(--dark-2);
       border-top: 1px solid var(--border);
+      border-radius: 12px;
       transition: background 0.3s;
     }
     .testi-card:hover { background: #1A1A1A; }
@@ -396,7 +403,7 @@
     }
     .testi-author { display: flex; align-items: center; gap: 14px; }
     .testi-initials {
-      width: 38px; height: 38px; border-radius: 50%;
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
       border: 1px solid rgba(184,151,106,0.3);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--display); font-size: 0.85rem; color: var(--accent);
@@ -417,7 +424,8 @@
     .contact-item-val { font-size: 0.9rem; color: #ddd; }
     .contact-rating {
       display: flex; align-items: center; gap: 16px;
-      padding: 20px 24px; border: 1px solid var(--border); margin-top: 8px;
+      padding: 20px 24px; border: 1px solid var(--border);
+      border-radius: 10px; margin-top: 8px;
     }
     .rating-score { font-family: var(--display); font-size: 2rem; font-weight: 400; }
     .rating-stars { font-size: 0.8rem; color: var(--accent); letter-spacing: 3px; }
@@ -436,6 +444,7 @@
     .field input, .field select, .field textarea {
       background: var(--dark-2);
       border: none; border-bottom: 1px solid var(--border);
+      border-radius: 0 0 6px 6px;
       padding: 8px 18px 16px; color: #fff;
       font-family: var(--body); font-size: 0.9rem; font-weight: 300;
       outline: none; resize: none; width: 100%;
@@ -448,11 +457,11 @@
     .field select option { background: var(--dark-2); }
     .field textarea { min-height: 100px; }
     .form-submit {
-      width: 100%; padding: 18px; margin-top: 1px;
+      width: 100%; padding: 18px; margin-top: 12px;
       background: var(--accent); color: var(--dark);
       font-family: var(--body); font-weight: 500; font-size: 0.82rem;
       letter-spacing: 0.08em; text-transform: uppercase;
-      border: none; cursor: pointer;
+      border: none; border-radius: 8px; cursor: pointer;
       transition: opacity 0.2s;
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }

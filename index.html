@@ -3,1124 +3,944 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baderfield Construction — Rénovation Premium à Montréal</title>
+  <title>Baderfield Construction — Rénovation Premium Montréal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --color-primary:    #0A0A0A;
-      --color-secondary:  #111111;
-      --color-accent:     #F97316;
-      --color-accent-dim: rgba(249,115,22,0.12);
-      --color-neutral:    #6B7280;
-      --color-text:       #FFFFFF;
-      --color-border:     rgba(255,255,255,0.08);
-      --font-display:     'Rubik', sans-serif;
-      --font-body:        'Inter', sans-serif;
-      --transition:       cubic-bezier(0.16, 1, 0.3, 1);
-      --duration:         0.7s;
+      --dark:       #0C0C0C;
+      --dark-2:     #141414;
+      --cream:      #F5F2ED;
+      --cream-2:    #EDE9E3;
+      --accent:     #B8976A;
+      --accent-dim: rgba(184,151,106,0.12);
+      --muted:      #888880;
+      --border:     rgba(255,255,255,0.07);
+      --border-l:   rgba(0,0,0,0.08);
+      --display:    'Playfair Display', serif;
+      --body:       'DM Sans', sans-serif;
+      --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     html { scroll-behavior: smooth; }
-    body { background: var(--color-primary); color: var(--color-text); font-family: var(--font-body); overflow-x: hidden; }
+    body {
+      font-family: var(--body);
+      font-size: 16px;
+      font-weight: 300;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+    }
 
-    /* ───── SCROLL REVEAL ───── */
+    /* ── REVEAL ── */
     [data-reveal] {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity var(--duration) var(--transition), transform var(--duration) var(--transition);
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
     }
-    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
-    [data-reveal]:nth-child(1) { transition-delay: 0ms; }
-    [data-reveal]:nth-child(2) { transition-delay: 100ms; }
-    [data-reveal]:nth-child(3) { transition-delay: 200ms; }
-    [data-reveal]:nth-child(4) { transition-delay: 300ms; }
-    [data-reveal]:nth-child(5) { transition-delay: 400ms; }
-    [data-reveal]:nth-child(6) { transition-delay: 500ms; }
+    [data-reveal].in { opacity: 1; transform: none; }
+    [data-reveal][data-d="1"] { transition-delay: 0.1s; }
+    [data-reveal][data-d="2"] { transition-delay: 0.2s; }
+    [data-reveal][data-d="3"] { transition-delay: 0.3s; }
+    [data-reveal][data-d="4"] { transition-delay: 0.4s; }
+    [data-reveal][data-d="5"] { transition-delay: 0.5s; }
 
-    /* ───── CLIP-PATH BUTTON ───── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
-      font-family: var(--font-display);
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px;
+      height: 72px;
+      background: rgba(12,12,12,0.85);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: height 0.3s var(--ease);
+    }
+    nav.compact { height: 60px; }
+    .nav-logo {
+      font-family: var(--display);
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 1.1rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
-      transition: transform 0.3s var(--transition), box-shadow 0.3s var(--transition), background 0.3s ease;
-    }
-    .btn-primary { background: var(--color-accent); color: #fff; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(249,115,22,0.4); }
-    .btn-ghost { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--color-border); clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%); }
-    .btn-ghost:hover { background: rgba(255,255,255,0.12); }
-
-    /* ───── MAGNETIC ───── */
-    .magnetic { display: inline-block; }
-
-    /* ───── NAVBAR ───── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 64px;
-      background: rgba(10,10,10,0.7);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--color-border);
-      transition: padding 0.3s ease;
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
       color: #fff;
       text-decoration: none;
     }
-    .nav-logo span { color: var(--color-accent); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 0.85rem; color: var(--color-neutral); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
     .nav-links a:hover { color: #fff; }
-    .nav-cta { clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); background: var(--color-accent); color: #fff; padding: 10px 24px; font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: box-shadow 0.2s; }
-    .nav-cta:hover { box-shadow: 0 0 20px rgba(249,115,22,0.5); }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; transition: 0.3s; }
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--accent);
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .nav-burger { display: none; cursor: pointer; gap: 5px; flex-direction: column; }
+    .nav-burger span { display: block; width: 22px; height: 1.5px; background: #fff; }
 
-    /* ───── HERO ───── */
+    /* ── HERO ── */
     #hero {
-      position: relative;
-      height: 100vh;
-      min-height: 700px;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 64px 80px;
-      overflow: hidden;
-    }
-    .hero-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 60%, rgba(10,10,10,0.75) 100%);
-      z-index: 1;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 780px; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--color-accent-dim);
-      border: 1px solid rgba(249,115,22,0.3);
-      padding: 6px 16px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-      margin-bottom: 24px;
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: clamp(2.8rem, 6vw, 5.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    .hero-title em { font-style: normal; color: var(--color-accent); }
-    .hero-subtitle { font-size: 1.1rem; color: var(--color-neutral); max-width: 520px; line-height: 1.6; margin-bottom: 40px; }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-    .hero-stats {
-      position: absolute;
-      bottom: 80px;
-      right: 64px;
-      z-index: 2;
-      display: flex;
-      gap: 40px;
-    }
-    .hero-stat-item { text-align: right; }
-    .hero-stat-num {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 2rem;
-      color: #fff;
-    }
-    .hero-stat-num .accent { color: var(--color-accent); }
-    .hero-stat-label { font-size: 0.75rem; color: var(--color-neutral); letter-spacing: 0.06em; text-transform: uppercase; }
-
-    /* ───── SECTION BASE ───── */
-    section { padding: 120px 64px; }
-    .section-label {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-    .section-title em { font-style: normal; color: var(--color-accent); }
-    .section-subtitle { color: var(--color-neutral); font-size: 1rem; max-width: 560px; line-height: 1.7; margin-bottom: 64px; }
-
-    /* ───── SERVICES ───── */
-    #services { background: var(--color-secondary); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .service-card {
-      position: relative;
-      background: var(--color-primary);
-      padding: 48px 40px;
-      transition: background 0.4s var(--transition);
-      overflow: hidden;
-      cursor: default;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--color-accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s var(--transition);
-    }
-    .service-card:hover { background: #111; }
-    .service-card:hover::before { transform: scaleX(1); }
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 24px;
-      display: block;
-    }
-    .service-name {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .service-desc { font-size: 0.9rem; color: var(--color-neutral); line-height: 1.6; }
-    .service-arrow {
-      position: absolute;
-      bottom: 40px; right: 40px;
-      font-size: 1.2rem;
-      color: var(--color-accent);
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: opacity 0.3s, transform 0.3s var(--transition);
-    }
-    .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
-
-    /* ───── BEFORE / AFTER ───── */
-    #gallery { background: var(--color-primary); }
-    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 64px; }
-    .ba-slider {
+      padding: 0 60px 80px;
+      background: var(--dark);
       position: relative;
       overflow: hidden;
-      cursor: ew-resize;
-      height: 440px;
-      background: #1a1a1a;
     }
-    .ba-slider-full { grid-column: 1 / -1; height: 560px; }
-    .ba-after, .ba-before {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 75% 40%, rgba(184,151,106,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(184,151,106,0.04) 0%, transparent 60%);
     }
-    .ba-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
-    }
-    .ba-placeholder-icon { font-size: 3rem; opacity: 0.3; }
-    .ba-placeholder-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-neutral); }
-    .ba-after { clip-path: inset(0 calc(100% - var(--reveal, 55%)) 0 0); z-index: 2; }
-    .ba-before-label, .ba-after-label {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      z-index: 5;
-      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-    }
-    .ba-before-label { right: 20px; background: rgba(0,0,0,0.7); color: var(--color-neutral); }
-    .ba-after-label { left: 20px; background: var(--color-accent); color: #fff; }
-    .ba-handle {
+    .hero-line {
       position: absolute;
       top: 0; bottom: 0;
-      left: var(--reveal, 55%);
-      transform: translateX(-50%);
-      width: 3px;
-      background: var(--color-accent);
-      z-index: 6;
-      pointer-events: none;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(184,151,106,0.15), transparent);
     }
-    .ba-handle::before, .ba-handle::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px; height: 36px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      border: 3px solid #fff;
-    }
-    .ba-handle::before { top: 50%; transform: translate(-50%,-50%); }
-    .ba-handle::after { display: none; }
-
-    /* ───── PROCESS ───── */
-    #process { background: var(--color-secondary); }
-    .process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 64px; }
-    .process-step {
-      background: var(--color-primary);
-      padding: 56px 48px;
-      position: relative;
-      overflow: hidden;
-    }
-    .process-step::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--color-accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 1s var(--transition) 0.2s;
-    }
-    .process-step.revealed::after { transform: scaleX(1); }
-    .step-num {
-      font-family: var(--font-display);
-      font-size: 5rem;
-      font-weight: 900;
-      color: rgba(249,115,22,0.1);
-      line-height: 1;
-      margin-bottom: 24px;
-      display: block;
-    }
-    .step-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.2rem;
+    .hero-line:nth-child(1) { left: 33.3%; }
+    .hero-line:nth-child(2) { left: 66.6%; }
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: -0.01em;
+      color: var(--accent);
+      margin-bottom: 28px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--accent);
+    }
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+      position: relative;
+    }
+    .hero-actions { display: flex; gap: 16px; align-items: center; position: relative; }
+    .btn-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: var(--dark);
+      font-family: var(--body); font-weight: 500; font-size: 0.82rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 14px 28px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.3s var(--ease);
+    }
+    .btn-main:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-main svg { width: 14px; height: 14px; }
+    .btn-outline {
+      display: inline-flex; align-items: center;
+      border: 1px solid rgba(255,255,255,0.2); color: var(--muted);
+      font-family: var(--body); font-weight: 400; font-size: 0.82rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 14px 28px; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .hero-stats {
+      position: absolute; right: 60px; bottom: 80px;
+      display: flex; flex-direction: column; gap: 32px;
+      text-align: right;
+    }
+    .stat-num {
+      font-family: var(--display); font-size: 2rem; font-weight: 400;
+      color: #fff; line-height: 1;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+    /* ── SECTION BASE ── */
+    .section { padding: 100px 60px; }
+    .section-dark { background: var(--dark); color: #fff; }
+    .section-dark-2 { background: var(--dark-2); color: #fff; }
+    .section-light { background: var(--cream); color: var(--dark); }
+    .section-light-2 { background: var(--cream-2); color: var(--dark); }
+
+    .label {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+    }
+    .label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+    .section-light .label,
+    .section-light-2 .label { color: #8A6D3B; }
+    .section-light .label::before,
+    .section-light-2 .label::before { background: #8A6D3B; }
+
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       margin-bottom: 16px;
     }
-    .step-desc { font-size: 0.9rem; color: var(--color-neutral); line-height: 1.7; }
-    .process-connector {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: var(--color-accent);
-      opacity: 0.5;
-      margin: 0 -12px;
-    }
+    h2 em { font-style: italic; color: var(--accent); }
+    .section-light h2 em,
+    .section-light-2 h2 em { color: #8A6D3B; }
 
-    /* ───── TESTIMONIALS ───── */
-    #testimonials { background: var(--color-primary); }
-    .testimonials-track {
-      display: flex;
-      gap: 24px;
+    .intro {
+      font-size: 0.92rem; line-height: 1.75;
+      max-width: 520px; margin-bottom: 60px;
+    }
+    .section-dark .intro,
+    .section-dark-2 .intro { color: var(--muted); }
+    .section-light .intro,
+    .section-light-2 .intro { color: #666; }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--accent);
+      padding: 0 60px;
+      height: 52px;
+      display: flex; align-items: center; gap: 0;
       overflow: hidden;
-      margin-top: 64px;
     }
-    .testimonial-card {
-      flex: 0 0 400px;
-      background: var(--color-secondary);
-      padding: 48px;
-      border: 1px solid var(--color-border);
+    .strip-inner {
+      display: flex; gap: 64px; align-items: center;
+      white-space: nowrap;
+    }
+    .strip-item {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--dark);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .strip-sep { width: 4px; height: 4px; background: rgba(0,0,0,0.3); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+    }
+    .service-card {
+      padding: 44px 40px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.35s var(--ease);
+      cursor: default;
+    }
+    .service-card:hover { background: rgba(255,255,255,0.03); }
+    .service-card:nth-child(3n) { border-right: none; }
+    .service-num {
+      font-family: var(--display); font-size: 0.75rem; font-style: italic;
+      color: var(--accent); margin-bottom: 20px; display: block;
+    }
+    .service-title {
+      font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+      letter-spacing: -0.01em; margin-bottom: 12px; line-height: 1.3;
+    }
+    .service-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .photo-block {
       position: relative;
-      transition: border-color 0.3s, transform 0.4s var(--transition);
+      background: #1A1A1A;
+      overflow: hidden;
     }
-    .testimonial-card.active { border-color: var(--color-accent); transform: translateY(-8px); }
-    .testimonial-stars { color: var(--color-accent); font-size: 1rem; margin-bottom: 24px; letter-spacing: 2px; }
-    .testimonial-text { font-size: 1rem; line-height: 1.75; color: #D1D5DB; margin-bottom: 32px; font-style: italic; }
-    .testimonial-author { display: flex; align-items: center; gap: 14px; }
-    .testimonial-avatar {
-      width: 44px; height: 44px;
-      background: var(--color-accent-dim);
-      border: 2px solid rgba(249,115,22,0.4);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--color-accent);
+    .photo-block-full { grid-column: 1 / -1; }
+    .photo-block-tall { aspect-ratio: 16/7; }
+    .photo-block:not(.photo-block-tall) { aspect-ratio: 4/3; }
+    .photo-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      padding: 24px 28px;
+      background: linear-gradient(145deg, #181818 0%, #111 100%);
+      position: relative;
     }
-    .testimonial-name { font-weight: 600; font-size: 0.9rem; }
-    .testimonial-location { font-size: 0.8rem; color: var(--color-neutral); }
-    .testimonial-dots { display: flex; gap: 8px; margin-top: 40px; justify-content: flex-start; }
-    .dot { width: 8px; height: 8px; background: var(--color-border); border-radius: 50%; cursor: pointer; transition: background 0.3s, transform 0.3s; }
-    .dot.active { background: var(--color-accent); transform: scale(1.3); }
-
-    /* ───── TRUST STRIP ───── */
-    .trust-strip {
-      background: var(--color-accent);
-      padding: 24px 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 64px;
-      flex-wrap: wrap;
-    }
-    .trust-item { display: flex; align-items: center; gap: 10px; }
-    .trust-icon { font-size: 1.2rem; }
-    .trust-text { font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; }
-
-    /* ───── CONTACT / FORM ───── */
-    #contact { background: var(--color-secondary); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .contact-info h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 24px; }
-    .contact-detail { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
-    .contact-detail-icon { font-size: 1.1rem; margin-top: 2px; color: var(--color-accent); }
-    .contact-detail-text { font-size: 0.95rem; color: var(--color-neutral); line-height: 1.5; }
-    .contact-detail-text strong { color: #fff; display: block; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
-    .contact-google {
-      margin-top: 40px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 20px 24px;
-      background: var(--color-primary);
-      border: 1px solid var(--color-border);
-    }
-    .google-stars { font-size: 1rem; color: var(--color-accent); letter-spacing: 2px; }
-    .google-score { font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; }
-    .google-label { font-size: 0.8rem; color: var(--color-neutral); }
-
-    form { display: flex; flex-direction: column; gap: 16px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral); }
-    .form-group input, .form-group select, .form-group textarea {
-      background: var(--color-primary);
-      border: 1px solid var(--color-border);
-      padding: 14px 18px;
-      color: #fff;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.3s;
-      resize: none;
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--color-accent); }
-    .form-group select option { background: var(--color-primary); }
-    .form-submit { width: 100%; justify-content: center; padding: 18px 40px; font-size: 0.95rem; margin-top: 8px; }
-    .form-note { font-size: 0.8rem; color: var(--color-neutral); text-align: center; }
-
-    /* ───── FOOTER ───── */
-    footer {
-      background: var(--color-primary);
-      padding: 64px;
-      border-top: 1px solid var(--color-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .footer-logo { font-family: var(--font-display); font-weight: 900; font-size: 1.2rem; letter-spacing: -0.02em; }
-    .footer-logo span { color: var(--color-accent); }
-    .footer-note { font-size: 0.8rem; color: var(--color-neutral); }
-    .footer-rbq { font-size: 0.75rem; color: var(--color-neutral); }
-
-    /* ───── AMBIENT ───── */
-    .ambient-section { position: relative; overflow: hidden; }
-    .ambient-section::before {
+    .photo-inner::before {
       content: '';
-      position: absolute;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: var(--color-accent);
-      filter: blur(140px);
-      opacity: 0.04;
-      top: -200px; right: -200px;
-      pointer-events: none;
-      animation: ambientPulse 18s ease-in-out infinite;
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
     }
-    @keyframes ambientPulse { 0%,100% { opacity: 0.03; transform: scale(1); } 50% { opacity: 0.06; transform: scale(1.08); } }
+    .photo-caption {
+      position: relative; z-index: 1;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .photo-tag {
+      position: absolute; top: 20px; right: 20px;
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); background: rgba(0,0,0,0.6);
+      padding: 4px 10px; backdrop-filter: blur(8px);
+    }
 
-    /* ───── RESPONSIVE ───── */
+    /* BA slider */
+    .ba-wrap {
+      position: relative; overflow: hidden; cursor: ew-resize;
+    }
+    .ba-wrap .photo-inner { position: absolute; inset: 0; }
+    .ba-before-side { z-index: 1; }
+    .ba-after-side {
+      z-index: 2;
+      clip-path: inset(0 calc(100% - var(--p, 52%)) 0 0);
+    }
+    .ba-divider {
+      position: absolute; top: 0; bottom: 0;
+      left: var(--p, 52%); transform: translateX(-50%);
+      width: 2px; background: #fff; z-index: 3; pointer-events: none;
+    }
+    .ba-divider::after {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #fff; border: 3px solid var(--dark);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .ba-label {
+      position: absolute; bottom: 20px; z-index: 4;
+      font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 4px 10px;
+    }
+    .ba-label-before { right: 20px; color: rgba(255,255,255,0.4); }
+    .ba-label-after { left: 20px; color: var(--accent); background: rgba(0,0,0,0.5); }
+
+    /* ── PROCESS ── */
+    .process-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .process-card {
+      padding: 52px 44px;
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .section-light .process-card,
+    .section-light-2 .process-card { background: var(--cream); border: 1px solid var(--border-l); }
+
+    .process-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: var(--accent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.9s var(--ease);
+    }
+    .process-card.in::after { transform: scaleX(1); }
+    .process-num {
+      font-family: var(--display); font-size: 4rem; font-weight: 400;
+      color: rgba(184,151,106,0.12); line-height: 1;
+      margin-bottom: 28px; display: block;
+    }
+    .process-title {
+      font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+      letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .process-desc { font-size: 0.85rem; line-height: 1.75; }
+    .section-dark .process-desc { color: var(--muted); }
+    .section-light .process-desc,
+    .section-light-2 .process-desc { color: #666; }
+
+    /* ── TESTIMONIALS ── */
+    .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .testi-card {
+      padding: 52px 48px;
+      background: var(--dark-2);
+      border-top: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .testi-card:hover { background: #1A1A1A; }
+    .testi-quote {
+      font-family: var(--display); font-size: 3rem; line-height: 0.7;
+      color: var(--accent); margin-bottom: 24px; display: block; opacity: 0.6;
+    }
+    .testi-text {
+      font-size: 0.92rem; line-height: 1.8; color: #ccc;
+      font-style: italic; margin-bottom: 32px;
+    }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-initials {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(184,151,106,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display); font-size: 0.85rem; color: var(--accent);
+    }
+    .testi-name { font-size: 0.85rem; font-weight: 500; }
+    .testi-loc { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+    .testi-stars { font-size: 0.7rem; color: var(--accent); letter-spacing: 2px; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
+    .contact-info-title {
+      font-family: var(--display); font-size: 1rem; font-weight: 600;
+      margin-bottom: 28px; color: #fff;
+    }
+    .contact-row { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+    .contact-item { display: flex; flex-direction: column; gap: 4px; }
+    .contact-item-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .contact-item-val { font-size: 0.9rem; color: #ddd; }
+    .contact-rating {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px; border: 1px solid var(--border); margin-top: 8px;
+    }
+    .rating-score { font-family: var(--display); font-size: 2rem; font-weight: 400; }
+    .rating-stars { font-size: 0.8rem; color: var(--accent); letter-spacing: 3px; }
+    .rating-label { font-size: 0.75rem; color: var(--muted); }
+
+    form { display: flex; flex-direction: column; gap: 0; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+    .field {
+      display: flex; flex-direction: column; gap: 0;
+      margin-bottom: 1px;
+    }
+    .field label {
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); padding: 14px 18px 0; background: var(--dark-2);
+    }
+    .field input, .field select, .field textarea {
+      background: var(--dark-2);
+      border: none; border-bottom: 1px solid var(--border);
+      padding: 8px 18px 16px; color: #fff;
+      font-family: var(--body); font-size: 0.9rem; font-weight: 300;
+      outline: none; resize: none; width: 100%;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-bottom-color: var(--accent); }
+    .field select option { background: var(--dark-2); }
+    .field textarea { min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 18px; margin-top: 1px;
+      background: var(--accent); color: var(--dark);
+      font-family: var(--body); font-weight: 500; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: opacity 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .form-submit:hover { opacity: 0.88; }
+    .form-note { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 14px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #090909;
+      padding: 48px 60px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      align-items: center; gap: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo { font-family: var(--display); font-size: 1rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .footer-logo span { color: var(--accent); }
+    .footer-center { text-align: center; font-size: 0.75rem; color: var(--muted); }
+    .footer-right { text-align: right; font-size: 0.72rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      nav { padding: 18px 32px; }
+      nav, #hero, .section { padding-left: 32px; padding-right: 32px; }
+      .strip { padding: 0 32px; }
       .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      #hero { padding: 0 32px 64px; }
-      .hero-stats { display: none; }
-      section { padding: 80px 32px; }
+      .nav-burger { display: flex; }
+      .hero-stats { right: 32px; }
       .services-grid { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-      .trust-strip { padding: 20px 32px; gap: 32px; }
-      footer { padding: 48px 32px; }
+      .services-grid .service-card:nth-child(3n) { border-right: 1px solid var(--border); }
+      .services-grid .service-card:nth-child(2n) { border-right: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 52px; }
+      footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+      .footer-right { text-align: center; }
     }
     @media (max-width: 768px) {
+      #hero { padding-bottom: 60px; }
+      .hero-stats { position: static; flex-direction: row; gap: 32px; margin-top: 40px; }
+      .stat-num { font-size: 1.5rem; }
       .services-grid { grid-template-columns: 1fr; }
+      .services-grid .service-card { border-right: none !important; }
       .gallery-grid { grid-template-columns: 1fr; }
-      .ba-slider-full { height: 340px; }
-      .ba-slider { height: 300px; }
-      .process-steps { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .testimonials-track { flex-direction: column; }
-      .testimonial-card { flex: none; }
+      .process-row { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════
-       NAVIGATION
-  ══════════════════════════════════════ -->
-  <nav id="navbar">
-    <a class="nav-logo" href="#hero">BADER<span>FIELD</span></a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Projets</a></li>
-      <li><a href="#process">Processus</a></li>
-      <li><a href="#testimonials">Avis</a></li>
-    </ul>
-    <a class="nav-cta" href="#contact">Soumission Gratuite</a>
-    <div class="nav-hamburger" onclick="toggleMenu(this)">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
+<!-- ════════════════════════════════ NAV ════ -->
+<nav id="nav">
+  <a class="nav-logo" href="#hero">BADER<span>FIELD</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#process">Processus</a></li>
+    <li><a href="#testimonials">Avis</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Soumission gratuite</a>
+  <div class="nav-burger" id="burger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-  <!-- ══════════════════════════════════════
-       HERO
-  ══════════════════════════════════════ -->
-  <section id="hero" class="ambient-section">
-    <canvas class="hero-canvas" id="heroCanvas"></canvas>
-    <div class="hero-overlay"></div>
+<!-- ════════════════════════════════ HERO ════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-line"></div>
 
-    <div class="hero-content">
-      <div class="hero-badge">Montréal — Grand Montréal</div>
-      <h1 class="hero-title">
-        Vos Projets.<br/>
-        Réalisés Sans<br/>
-        <em>Compromis.</em>
-      </h1>
-      <p class="hero-subtitle">
-        Baderfield Construction transforme vos espaces avec une expertise reconnue —
-        cuisine, salle de bain, sous-sol — du concept à la livraison clé en main.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary magnetic">
-          Demander une soumission gratuite →
-        </a>
-        <a href="#gallery" class="btn btn-ghost magnetic">
-          Voir nos projets
-        </a>
-      </div>
-    </div>
+  <div class="hero-tag" data-reveal>Montréal — Grand Montréal</div>
 
-    <div class="hero-stats">
-      <div class="hero-stat-item">
-        <div class="hero-stat-num" data-count="60">0<span class="accent">+</span></div>
-        <div class="hero-stat-label">Avis Google</div>
-      </div>
-      <div class="hero-stat-item">
-        <div class="hero-stat-num"><span data-count-float="4.4">4.4</span><span class="accent">★</span></div>
-        <div class="hero-stat-label">Note Moyenne</div>
-      </div>
-      <div class="hero-stat-item">
-        <div class="hero-stat-num" data-count="18">0</div>
-        <div class="hero-stat-label">Professionnels</div>
-      </div>
-    </div>
-  </section>
+  <h1 data-reveal data-d="1">
+    Vos espaces,<br/>
+    transformés avec<br/>
+    <em>précision.</em>
+  </h1>
 
-  <!-- ══════════════════════════════════════
-       TRUST STRIP
-  ══════════════════════════════════════ -->
-  <div class="trust-strip">
-    <div class="trust-item">
-      <span class="trust-icon">🛡️</span>
-      <span class="trust-text">Licence RBQ</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-icon">✅</span>
-      <span class="trust-text">Travaux Assurés</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-icon">⭐</span>
-      <span class="trust-text">4.4 / 5 sur Google</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-icon">📍</span>
-      <span class="trust-text">Grand Montréal</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-icon">🔒</span>
-      <span class="trust-text">Soumission Gratuite</span>
-    </div>
+  <p class="hero-sub" data-reveal data-d="2">
+    Baderfield Construction réalise vos rénovations résidentielles et commerciales —
+    cuisine, salle de bain, sous-sol — clé en main et sans compromis sur la qualité.
+  </p>
+
+  <div class="hero-actions" data-reveal data-d="3">
+    <a href="#contact" class="btn-main">
+      Demander une soumission
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#projects" class="btn-outline">Voir nos réalisations</a>
   </div>
 
-  <!-- ══════════════════════════════════════
-       SERVICES
-  ══════════════════════════════════════ -->
-  <section id="services" class="ambient-section">
-    <span class="section-label" data-reveal>Nos Spécialités</span>
-    <h2 class="section-title" data-reveal>Ce Que Nous<br/><em>Réalisons</em></h2>
-    <p class="section-subtitle" data-reveal>
-      De la rénovation résidentielle au projet commercial, Baderfield Construction
-      couvre l'ensemble des travaux avec une équipe de 18 professionnels qualifiés.
-    </p>
+  <div class="hero-stats" data-reveal data-d="4">
+    <div>
+      <div class="stat-num"><span data-count="60">60</span><span>+</span></div>
+      <div class="stat-label">Avis Google</div>
+    </div>
+    <div>
+      <div class="stat-num">4.4<span>★</span></div>
+      <div class="stat-label">Note moyenne</div>
+    </div>
+    <div>
+      <div class="stat-num"><span data-count="18">18</span></div>
+      <div class="stat-label">Professionnels</div>
+    </div>
+  </div>
+</section>
 
-    <div class="services-grid">
-      <div class="service-card" data-reveal>
-        <span class="service-icon">🍳</span>
-        <div class="service-name">Rénovation Cuisine</div>
-        <p class="service-desc">Conception sur mesure, armoires, comptoirs, plomberie et électricité — transformation complète de votre cuisine.</p>
-        <span class="service-arrow">→</span>
-      </div>
-      <div class="service-card" data-reveal>
-        <span class="service-icon">🛁</span>
-        <div class="service-name">Salle de Bain</div>
-        <p class="service-desc">Douches à l'italienne, planchers chauffants, carrelage haut de gamme — espaces qui allient luxe et fonctionnalité.</p>
-        <span class="service-arrow">→</span>
-      </div>
-      <div class="service-card" data-reveal>
-        <span class="service-icon">🏠</span>
-        <div class="service-name">Aménagement Sous-Sol</div>
-        <p class="service-desc">Conversion en espace habitable, chambre légale, salle familiale ou bureau — maximisez votre superficie.</p>
-        <span class="service-arrow">→</span>
-      </div>
-      <div class="service-card" data-reveal>
-        <span class="service-icon">🏗️</span>
-        <div class="service-name">Construction Neuve</div>
-        <p class="service-desc">Agrandissements, garages, remises et projets résidentiels neufs réalisés selon les normes du bâtiment du Québec.</p>
-        <span class="service-arrow">→</span>
-      </div>
-      <div class="service-card" data-reveal>
-        <span class="service-icon">🏢</span>
-        <div class="service-name">Rénovation Commerciale</div>
-        <p class="service-desc">Bureaux, locaux commerciaux et espaces professionnels — livrés dans les délais, sans impact sur vos opérations.</p>
-        <span class="service-arrow">→</span>
-      </div>
-      <div class="service-card" data-reveal>
-        <span class="service-icon">🔑</span>
-        <div class="service-name">Projet Clé en Main</div>
-        <p class="service-desc">Gestion complète de votre projet : plans, permis, travaux et finition — un seul interlocuteur du début à la fin.</p>
-        <span class="service-arrow">→</span>
+<!-- ════════════════════════════════ STRIP ════ -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">Licence RBQ</div>
+    <div class="strip-sep"></div>
+    <div class="strip-item">Travaux assurés</div>
+    <div class="strip-sep"></div>
+    <div class="strip-item">4.4 / 5 Google</div>
+    <div class="strip-sep"></div>
+    <div class="strip-item">Grand Montréal</div>
+    <div class="strip-sep"></div>
+    <div class="strip-item">Soumission gratuite</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════ SERVICES ════ -->
+<section id="services" class="section section-dark-2">
+  <div class="label" data-reveal>Spécialités</div>
+  <h2 data-reveal data-d="1">Ce que nous<br/><em>réalisons</em></h2>
+  <p class="intro" data-reveal data-d="2">
+    De la rénovation résidentielle au projet commercial, notre équipe de 18 professionnels
+    couvre l'ensemble des travaux avec une expertise reconnue à Montréal.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card" data-reveal>
+      <span class="service-num">01</span>
+      <div class="service-title">Rénovation cuisine</div>
+      <p class="service-desc">Conception sur mesure, armoires, comptoirs, plomberie et électricité. Transformation complète selon vos goûts et votre budget.</p>
+    </div>
+    <div class="service-card" data-reveal data-d="1">
+      <span class="service-num">02</span>
+      <div class="service-title">Salle de bain</div>
+      <p class="service-desc">Douches à l'italienne, planchers chauffants, carrelage grand format. Des espaces qui allient fonctionnalité et design contemporain.</p>
+    </div>
+    <div class="service-card" data-reveal data-d="2">
+      <span class="service-num">03</span>
+      <div class="service-title">Aménagement sous-sol</div>
+      <p class="service-desc">Conversion en espace habitable, suite, salle familiale ou bureau. Maximisez chaque pied carré de votre propriété.</p>
+    </div>
+    <div class="service-card" data-reveal data-d="1">
+      <span class="service-num">04</span>
+      <div class="service-title">Construction & agrandissement</div>
+      <p class="service-desc">Nouvelles constructions, extensions et garages réalisés dans le respect des normes du bâtiment du Québec.</p>
+    </div>
+    <div class="service-card" data-reveal data-d="2">
+      <span class="service-num">05</span>
+      <div class="service-title">Rénovation commerciale</div>
+      <p class="service-desc">Bureaux, locaux et espaces professionnels livrés dans les délais, avec un minimum d'impact sur vos opérations.</p>
+    </div>
+    <div class="service-card" data-reveal data-d="3">
+      <span class="service-num">06</span>
+      <div class="service-title">Projet clé en main</div>
+      <p class="service-desc">Plans, permis, travaux et finition — un seul interlocuteur du début à la remise des clés. Zéro coordination à votre charge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ PROJECTS ════ -->
+<section id="projects" class="section section-dark" style="padding-bottom: 0;">
+  <div class="label" data-reveal>Réalisations</div>
+  <h2 data-reveal data-d="1">La transformation<br/><em>parle d'elle-même</em></h2>
+  <p class="intro" data-reveal data-d="2">
+    Glissez le curseur pour comparer l'état avant et après — des projets réels réalisés à Montréal.
+  </p>
+</section>
+
+<div class="gallery-grid" id="gallery-grid">
+
+  <!-- BA 1 — full width, cuisine -->
+  <div class="photo-block photo-block-full photo-block-tall ba-wrap" id="ba1">
+    <div class="photo-inner ba-before-side">
+      <div class="photo-caption">Cuisine — Avant travaux</div>
+    </div>
+    <div class="photo-inner ba-after-side" style="background:linear-gradient(145deg,#1C1612,#14110C);">
+      <div class="photo-caption" style="color:rgba(184,151,106,0.5)">Cuisine — Après travaux</div>
+    </div>
+    <span class="ba-label ba-label-before">Avant</span>
+    <span class="ba-label ba-label-after">Après</span>
+    <div class="ba-divider" id="ba1d"></div>
+  </div>
+
+  <!-- BA 2 — salle de bain -->
+  <div class="photo-block ba-wrap" id="ba2">
+    <div class="photo-inner ba-before-side">
+      <div class="photo-caption">Salle de bain — Avant</div>
+    </div>
+    <div class="photo-inner ba-after-side" style="background:linear-gradient(145deg,#161819,#101314);">
+      <div class="photo-caption" style="color:rgba(184,151,106,0.5)">Salle de bain — Après</div>
+    </div>
+    <span class="ba-label ba-label-before">Avant</span>
+    <span class="ba-label ba-label-after">Après</span>
+    <div class="ba-divider" id="ba2d"></div>
+  </div>
+
+  <!-- BA 3 — sous-sol -->
+  <div class="photo-block ba-wrap" id="ba3">
+    <div class="photo-inner ba-before-side">
+      <div class="photo-caption">Sous-sol — Avant</div>
+    </div>
+    <div class="photo-inner ba-after-side" style="background:linear-gradient(145deg,#1A1612,#131008);">
+      <div class="photo-caption" style="color:rgba(184,151,106,0.5)">Sous-sol — Après</div>
+    </div>
+    <span class="ba-label ba-label-before">Avant</span>
+    <span class="ba-label ba-label-after">Après</span>
+    <div class="ba-divider" id="ba3d"></div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════ PROCESS ════ -->
+<section id="process" class="section section-dark">
+  <div class="label" data-reveal>Notre méthode</div>
+  <h2 data-reveal data-d="1">Trois étapes.<br/><em>Aucune surprise.</em></h2>
+  <p class="intro" data-reveal data-d="2">
+    Un processus transparent du premier contact jusqu'à la livraison — vous savez exactement
+    où en est votre projet à chaque moment.
+  </p>
+
+  <div class="process-row">
+    <div class="process-card" data-reveal>
+      <span class="process-num">01</span>
+      <div class="process-title">Consultation gratuite</div>
+      <p class="process-desc">Nous venons chez vous, évaluons votre projet, discutons de vos attentes et de votre budget. Vous recevez une soumission détaillée sous 48h — sans engagement.</p>
+    </div>
+    <div class="process-card" data-reveal data-d="1">
+      <span class="process-num">02</span>
+      <div class="process-title">Travaux & suivi régulier</div>
+      <p class="process-desc">Un chef de projet dédié coordonne l'ensemble du chantier. Mises à jour régulières, respect des délais et de votre domicile tout au long des travaux.</p>
+    </div>
+    <div class="process-card" data-reveal data-d="2">
+      <span class="process-num">03</span>
+      <div class="process-title">Livraison clé en main</div>
+      <p class="process-desc">Inspection finale avec vous, correction de chaque détail, puis remise des clés. Votre espace est exactement tel que vous l'avez imaginé.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ TESTIMONIALS ════ -->
+<section id="testimonials" class="section section-dark-2">
+  <div class="label" data-reveal>Avis clients</div>
+  <h2 data-reveal data-d="1">Ce que disent<br/><em>nos clients</em></h2>
+  <p class="intro" data-reveal data-d="2">
+    60 avis sur Google avec une note de 4.4 étoiles — des propriétaires montréalais qui ont fait confiance à Baderfield.
+  </p>
+
+  <div class="testi-grid">
+    <div class="testi-card" data-reveal>
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Équipe très professionnelle, travaux de rénovation de cuisine réalisés dans les délais promis. La qualité des finitions est impeccable. Je recommande sans hésiter à tous ceux qui cherchent un entrepreneur sérieux à Montréal.</p>
+      <div class="testi-author">
+        <div class="testi-initials">ML</div>
+        <div>
+          <div class="testi-name">Marie-Louise T.</div>
+          <div class="testi-loc">Rosemont — La Petite-Patrie</div>
+        </div>
+        <div class="testi-stars" style="margin-left:auto">★★★★★</div>
       </div>
     </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       GALERIE AVANT / APRÈS
-  ══════════════════════════════════════ -->
-  <section id="gallery">
-    <span class="section-label" data-reveal>Nos Réalisations</span>
-    <h2 class="section-title" data-reveal>La <em>Transformation</em><br/>Parle d'Elle-Même</h2>
-    <p class="section-subtitle" data-reveal>
-      Glissez pour comparer l'état avant et après — des projets réels à Montréal et Grand Montréal.
-    </p>
-
-    <div class="gallery-grid">
-      <!-- Slider 1 — Full width -->
-      <div class="ba-slider ba-slider-full" id="ba1">
-        <div class="ba-before">
-          <div class="ba-placeholder">
-            <span class="ba-placeholder-icon">📷</span>
-            <span class="ba-placeholder-label">Photo Cuisine — Avant</span>
-          </div>
+    <div class="testi-card" data-reveal data-d="1">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Notre sous-sol est maintenant un espace de vie magnifique. Baderfield a géré tout le projet clé en main — permis, plomberie, électricité, gypse. Communication excellente tout au long des travaux.</p>
+      <div class="testi-author">
+        <div class="testi-initials">JF</div>
+        <div>
+          <div class="testi-name">Jean-François B.</div>
+          <div class="testi-loc">Plateau Mont-Royal</div>
         </div>
-        <div class="ba-after">
-          <div class="ba-placeholder" style="background: linear-gradient(135deg,#1a1a1a,#2a1500);">
-            <span class="ba-placeholder-icon" style="opacity:0.5">✨</span>
-            <span class="ba-placeholder-label" style="color:var(--color-accent)">Photo Cuisine — Après</span>
-          </div>
-        </div>
-        <span class="ba-before-label">AVANT</span>
-        <span class="ba-after-label">APRÈS</span>
-        <div class="ba-handle"></div>
-      </div>
-
-      <!-- Slider 2 -->
-      <div class="ba-slider" id="ba2">
-        <div class="ba-before">
-          <div class="ba-placeholder">
-            <span class="ba-placeholder-icon">📷</span>
-            <span class="ba-placeholder-label">Salle de Bain — Avant</span>
-          </div>
-        </div>
-        <div class="ba-after">
-          <div class="ba-placeholder" style="background:linear-gradient(135deg,#1a1a1a,#2a1500);">
-            <span class="ba-placeholder-icon" style="opacity:0.5">✨</span>
-            <span class="ba-placeholder-label" style="color:var(--color-accent)">Salle de Bain — Après</span>
-          </div>
-        </div>
-        <span class="ba-before-label">AVANT</span>
-        <span class="ba-after-label">APRÈS</span>
-        <div class="ba-handle"></div>
-      </div>
-
-      <!-- Slider 3 -->
-      <div class="ba-slider" id="ba3">
-        <div class="ba-before">
-          <div class="ba-placeholder">
-            <span class="ba-placeholder-icon">📷</span>
-            <span class="ba-placeholder-label">Sous-Sol — Avant</span>
-          </div>
-        </div>
-        <div class="ba-after">
-          <div class="ba-placeholder" style="background:linear-gradient(135deg,#1a1a1a,#2a1500);">
-            <span class="ba-placeholder-icon" style="opacity:0.5">✨</span>
-            <span class="ba-placeholder-label" style="color:var(--color-accent)">Sous-Sol — Après</span>
-          </div>
-        </div>
-        <span class="ba-before-label">AVANT</span>
-        <span class="ba-after-label">APRÈS</span>
-        <div class="ba-handle"></div>
+        <div class="testi-stars" style="margin-left:auto">★★★★★</div>
       </div>
     </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       PROCESSUS
-  ══════════════════════════════════════ -->
-  <section id="process" class="ambient-section">
-    <span class="section-label" data-reveal>Comment Ça Marche</span>
-    <h2 class="section-title" data-reveal>3 Étapes.<br/><em>Zéro Surprise.</em></h2>
-    <p class="section-subtitle" data-reveal>
-      Un processus clair et transparent pour que vous sachiez exactement où en est votre projet — à chaque étape.
-    </p>
-
-    <div class="process-steps">
-      <div class="process-step" data-reveal>
-        <span class="step-num">01</span>
-        <div class="step-title">Consultation Gratuite</div>
-        <p class="step-desc">On vient chez vous, on évalue votre projet, on discute de vos attentes et de votre budget. Vous recevez une soumission détaillée sous 48h — sans obligation.</p>
-      </div>
-      <div class="process-step" data-reveal>
-        <span class="step-num">02</span>
-        <div class="step-title">Travaux & Suivi</div>
-        <p class="step-desc">Notre équipe de 18 professionnels prend en charge tout le chantier. Vous avez un chef de projet dédié et des mises à jour régulières. On respecte les délais et votre domicile.</p>
-      </div>
-      <div class="process-step" data-reveal>
-        <span class="step-num">03</span>
-        <div class="step-title">Livraison Clé en Main</div>
-        <p class="step-desc">Inspection finale avec vous, correction de tout détail, et remise des clés. Votre espace est exactement tel que vous l'avez imaginé — ou encore mieux.</p>
+    <div class="testi-card" data-reveal data-d="1">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Très bons travaux pour notre salle de bain principale. Propres, ponctuels et à l'écoute. Quelques ajustements mineurs ont été faits sans discussion. Je ferais affaire avec eux pour ma prochaine rénovation.</p>
+      <div class="testi-author">
+        <div class="testi-initials">SK</div>
+        <div>
+          <div class="testi-name">Sophie K.</div>
+          <div class="testi-loc">Côte-des-Neiges</div>
+        </div>
+        <div class="testi-stars" style="margin-left:auto">★★★★☆</div>
       </div>
     </div>
-  </section>
+    <div class="testi-card" data-reveal data-d="2">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Projet d'agrandissement complexe terminé avant le délai prévu. Équipe efficace, respectueuse, résultat au-delà de nos attentes. Soumission honnête, aucune surprise en cours de route.</p>
+      <div class="testi-author">
+        <div class="testi-initials">RC</div>
+        <div>
+          <div class="testi-name">Robert C.</div>
+          <div class="testi-loc">Verdun</div>
+        </div>
+        <div class="testi-stars" style="margin-left:auto">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════════
-       TÉMOIGNAGES
-  ══════════════════════════════════════ -->
-  <section id="testimonials">
-    <span class="section-label" data-reveal>Avis Clients</span>
-    <h2 class="section-title" data-reveal>Ce Que Disent<br/><em>Nos Clients</em></h2>
-    <p class="section-subtitle" data-reveal>
-      60 avis sur Google avec une note de 4.4 étoiles — voici ce que des propriétaires montréalais pensent de notre travail.
-    </p>
+<!-- ════════════════════════════════ CONTACT ════ -->
+<section id="contact" class="section section-dark">
+  <div class="label" data-reveal>Soumission gratuite</div>
+  <h2 data-reveal data-d="1">Commençons votre<br/><em>projet ensemble</em></h2>
 
-    <div class="testimonials-track" id="testimonialsTrack">
-      <div class="testimonial-card active" data-reveal>
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Équipe très professionnelle, travaux de rénovation de cuisine réalisés dans les délais promis. La qualité des finitions est impeccable. Je recommande sans hésiter à tous ceux qui cherchent un entrepreneur sérieux à Montréal."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">M.L</div>
-          <div>
-            <div class="testimonial-name">Marie-Louise T.</div>
-            <div class="testimonial-location">Rosemont — La Petite-Patrie</div>
-          </div>
+  <div class="contact-grid" style="margin-top: 60px;">
+    <div data-reveal>
+      <div class="contact-info-title">Pourquoi nous choisir</div>
+      <div class="contact-row">
+        <div class="contact-item">
+          <span class="contact-item-label">Délai de réponse</span>
+          <span class="contact-item-val">Soumission détaillée sous 48h — sans engagement</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Accréditation</span>
+          <span class="contact-item-val">Licence RBQ — travaux couverts par assurance responsabilité</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Zone de service</span>
+          <span class="contact-item-val">Montréal, Laval, Rive-Sud, Rive-Nord et Grand Montréal</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Contact</span>
+          <span class="contact-item-val">contact@baderfieldconstructioninc.ca</span>
         </div>
       </div>
-      <div class="testimonial-card" data-reveal>
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Notre sous-sol est maintenant un espace de vie magnifique. Baderfield a géré tout le projet clé en main — permis, plomberie, électricité, gypse. Communication excellente tout au long des travaux."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">JF</div>
-          <div>
-            <div class="testimonial-name">Jean-François B.</div>
-            <div class="testimonial-location">Plateau Mont-Royal</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card" data-reveal>
-        <div class="testimonial-stars">★★★★☆</div>
-        <p class="testimonial-text">"Très bons travaux pour notre salle de bain principale. Propres, ponctuels et à l'écoute. Quelques ajustements mineurs ont été faits sans discussion. Je ferais affaire avec eux pour ma prochaine rénovation."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">SK</div>
-          <div>
-            <div class="testimonial-name">Sophie K.</div>
-            <div class="testimonial-location">Côte-des-Neiges</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card" data-reveal>
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Projet d'agrandissement complexe terminé avant le délai prévu. L'équipe est efficace, respectueuse et le résultat dépasse ce qu'on espérait. Soumission honnête, sans surprises en cours de route."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">RC</div>
-          <div>
-            <div class="testimonial-name">Robert C.</div>
-            <div class="testimonial-location">Verdun</div>
-          </div>
+      <div class="contact-rating">
+        <div>
+          <div class="rating-score">4.4</div>
+          <div class="rating-stars">★★★★☆</div>
+          <div class="rating-label">60 avis Google vérifiés</div>
         </div>
       </div>
     </div>
 
-    <div class="testimonial-dots" id="dots">
-      <div class="dot active" onclick="goToSlide(0)"></div>
-      <div class="dot" onclick="goToSlide(1)"></div>
-      <div class="dot" onclick="goToSlide(2)"></div>
-      <div class="dot" onclick="goToSlide(3)"></div>
+    <div data-reveal data-d="1">
+      <form id="form" onsubmit="handleForm(event)">
+        <div class="field-row">
+          <div class="field">
+            <label>Prénom</label>
+            <input type="text" placeholder="Jean-François" required />
+          </div>
+          <div class="field">
+            <label>Nom</label>
+            <input type="text" placeholder="Tremblay" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Téléphone</label>
+            <input type="tel" placeholder="514-000-0000" required />
+          </div>
+          <div class="field">
+            <label>Courriel</label>
+            <input type="email" placeholder="vous@exemple.com" required />
+          </div>
+        </div>
+        <div class="field">
+          <label>Type de projet</label>
+          <select required>
+            <option value="" disabled selected>Sélectionnez</option>
+            <option>Rénovation cuisine</option>
+            <option>Rénovation salle de bain</option>
+            <option>Aménagement sous-sol</option>
+            <option>Construction / Agrandissement</option>
+            <option>Rénovation commerciale</option>
+            <option>Projet clé en main</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Budget estimé</label>
+          <select>
+            <option value="" disabled selected>Sélectionnez</option>
+            <option>Moins de 20 000 $</option>
+            <option>20 000 – 50 000 $</option>
+            <option>50 000 – 100 000 $</option>
+            <option>100 000 – 200 000 $</option>
+            <option>200 000 $+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Description du projet</label>
+          <textarea rows="4" placeholder="Espace concerné, travaux souhaités, délai envisagé..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submit-btn">
+          Envoyer ma demande
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p class="form-note">Réponse sous 48h &nbsp;·&nbsp; Aucun engagement &nbsp;·&nbsp; 100% gratuit</p>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════════
-       CONTACT / FORMULAIRE
-  ══════════════════════════════════════ -->
-  <section id="contact" class="ambient-section">
-    <span class="section-label" data-reveal>Soumission Gratuite</span>
-    <h2 class="section-title" data-reveal>Commençons Votre<br/><em>Projet Ensemble</em></h2>
+<!-- ════════════════════════════════ FOOTER ════ -->
+<footer>
+  <div class="footer-logo">BADER<span>FIELD</span></div>
+  <div class="footer-center">© 2026 Baderfield Construction inc. — Montréal, Québec</div>
+  <div class="footer-right">Licence RBQ [À compléter] — Assurance incluse</div>
+</footer>
 
-    <div class="contact-grid">
-      <div class="contact-info" data-reveal>
-        <h3>Pourquoi nous choisir ?</h3>
+<script>
+  // ── SCROLL REVEAL ──
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
 
-        <div class="contact-detail">
-          <span class="contact-detail-icon">📞</span>
-          <div class="contact-detail-text">
-            <strong>Réponse Rapide</strong>
-            Soumission détaillée sous 48h — sans engagement.
-          </div>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-icon">🛡️</span>
-          <div class="contact-detail-text">
-            <strong>Licence RBQ & Assurance</strong>
-            Tous nos travaux sont réalisés par des professionnels accrédités et assurés.
-          </div>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-icon">📍</span>
-          <div class="contact-detail-text">
-            <strong>Zone de Service</strong>
-            Montréal, Laval, Rive-Sud, Rive-Nord et Grand Montréal.
-          </div>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-icon">✉️</span>
-          <div class="contact-detail-text">
-            <strong>Contact Direct</strong>
-            contact@baderfieldconstructioninc.ca
-          </div>
-        </div>
+  // ── PROCESS LINE ANIMATION (also uses .in class) ──
+  const processObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.process-card').forEach(el => processObs.observe(el));
 
-        <div class="contact-google">
-          <div>
-            <div class="google-score">4.4<span style="font-size:1rem;color:var(--color-neutral)">/5</span></div>
-            <div class="google-stars">★★★★☆</div>
-            <div class="google-label">60 avis Google vérifiés</div>
-          </div>
-        </div>
-      </div>
-
-      <div data-reveal>
-        <form onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Prénom</label>
-              <input type="text" placeholder="Jean-François" required />
-            </div>
-            <div class="form-group">
-              <label>Nom</label>
-              <input type="text" placeholder="Tremblay" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Téléphone</label>
-              <input type="tel" placeholder="514-000-0000" required />
-            </div>
-            <div class="form-group">
-              <label>Courriel</label>
-              <input type="email" placeholder="vous@exemple.com" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Type de Projet</label>
-            <select required>
-              <option value="" disabled selected>Sélectionnez un type</option>
-              <option>Rénovation cuisine</option>
-              <option>Rénovation salle de bain</option>
-              <option>Aménagement sous-sol</option>
-              <option>Construction / Agrandissement</option>
-              <option>Rénovation commerciale</option>
-              <option>Projet clé en main</option>
-              <option>Autre</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Budget Estimé</label>
-            <select>
-              <option value="" disabled selected>Sélectionnez une fourchette</option>
-              <option>Moins de 20 000 $</option>
-              <option>20 000 $ — 50 000 $</option>
-              <option>50 000 $ — 100 000 $</option>
-              <option>100 000 $ — 200 000 $</option>
-              <option>200 000 $+</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Description du Projet</label>
-            <textarea rows="4" placeholder="Décrivez brièvement votre projet — espace concerné, travaux souhaités, délai envisagé..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary form-submit magnetic">
-            Demander ma soumission gratuite →
-          </button>
-          <p class="form-note">Réponse sous 48h • Aucun engagement • Soumission 100% gratuite</p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       FOOTER
-  ══════════════════════════════════════ -->
-  <footer>
-    <div class="footer-logo">BADER<span>FIELD</span> CONSTRUCTION</div>
-    <div class="footer-note">© 2026 Baderfield Construction inc. — Montréal, Québec</div>
-    <div class="footer-rbq">Licence RBQ : [À COMPLÉTER] — Assurance responsabilité civile incluse</div>
-  </footer>
-
-  <!-- ══════════════════════════════════════
-       SCRIPTS
-  ══════════════════════════════════════ -->
-  <script>
-    // ─── HERO CANVAS — ANIMATED GEOMETRIC GRID ───
-    const canvas = document.getElementById('heroCanvas');
-    const ctx = canvas.getContext('2d');
-    let W, H, lines = [], particles = [];
-
-    function resize() {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-      buildLines();
+  // ── COUNT-UP ──
+  function animCount(el, target) {
+    let start = 0, duration = 1600, begin = null;
+    function step(ts) {
+      if (!begin) begin = ts;
+      const p = Math.min((ts - begin) / duration, 1);
+      const v = Math.floor(1 - Math.pow(1 - p, 3) === 0 ? 0 : (1 - Math.pow(1 - p, 3)) * target);
+      el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
     }
-
-    function buildLines() {
-      lines = [];
-      const spacing = 80;
-      for (let x = 0; x <= W; x += spacing) {
-        lines.push({ x1: x, y1: 0, x2: x - H * 0.3, y2: H, phase: Math.random() * Math.PI * 2, speed: 0.3 + Math.random() * 0.4 });
+    requestAnimationFrame(step);
+  }
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animCount(e.target, parseInt(e.target.dataset.count));
+        countObs.unobserve(e.target);
       }
-      // spawn particles
-      particles = [];
-      for (let i = 0; i < 40; i++) {
-        particles.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: -0.2 - Math.random() * 0.4,
-          r: 1 + Math.random() * 2,
-          life: Math.random(),
-        });
-      }
-    }
-
-    let t = 0;
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      t += 0.005;
-
-      // grid lines
-      lines.forEach(l => {
-        const alpha = 0.04 + 0.02 * Math.sin(t + l.phase);
-        ctx.beginPath();
-        ctx.moveTo(l.x1, l.y1);
-        ctx.lineTo(l.x2, l.y2);
-        ctx.strokeStyle = `rgba(249,115,22,${alpha})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      });
-
-      // particles
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life += 0.004;
-        if (p.life > 1) {
-          p.x = Math.random() * W;
-          p.y = H + 10;
-          p.life = 0;
-        }
-        const alpha = Math.sin(p.life * Math.PI) * 0.4;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(249,115,22,${alpha})`;
-        ctx.fill();
-      });
-
-      requestAnimationFrame(draw);
-    }
-
-    window.addEventListener('resize', resize);
-    resize();
-    draw();
-
-    // ─── SCROLL REVEAL ───
-    const revealEls = document.querySelectorAll('[data-reveal]');
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => revealObs.observe(el));
-
-    // ─── COUNT-UP ───
-    function countUp(el, target, suffix = '') {
-      const duration = 1800;
-      let start = null;
-      function step(ts) {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.floor(ease * target) + suffix;
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    const countObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const el = e.target;
-          const target = parseInt(el.dataset.count || '0');
-          if (target) {
-            countUp(el, target);
-            countObs.unobserve(el);
-          }
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
-
-    // ─── MAGNETIC HOVER ───
-    document.querySelectorAll('.magnetic').forEach(el => {
-      el.addEventListener('mousemove', e => {
-        const r = el.getBoundingClientRect();
-        const x = e.clientX - r.left - r.width / 2;
-        const y = e.clientY - r.top - r.height / 2;
-        el.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
-      });
-      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
     });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
 
-    // ─── BEFORE / AFTER SLIDERS ───
-    function initSlider(id) {
-      const slider = document.getElementById(id);
-      if (!slider) return;
-      slider.style.setProperty('--reveal', '55%');
-      let dragging = false;
-
-      function setReveal(clientX) {
-        const r = slider.getBoundingClientRect();
-        const pct = Math.max(5, Math.min(95, ((clientX - r.left) / r.width) * 100));
-        slider.style.setProperty('--reveal', pct + '%');
-      }
-
-      slider.addEventListener('mousedown', e => { dragging = true; setReveal(e.clientX); });
-      window.addEventListener('mousemove', e => { if (dragging) setReveal(e.clientX); });
-      window.addEventListener('mouseup', () => { dragging = false; });
-
-      slider.addEventListener('touchstart', e => { dragging = true; setReveal(e.touches[0].clientX); }, { passive: true });
-      window.addEventListener('touchmove', e => { if (dragging) setReveal(e.touches[0].clientX); }, { passive: true });
-      window.addEventListener('touchend', () => { dragging = false; });
+  // ── B/A SLIDERS ──
+  function makeSlider(wrapId) {
+    const wrap = document.getElementById(wrapId);
+    if (!wrap) return;
+    let p = 52, dragging = false;
+    function setP(clientX) {
+      const r = wrap.getBoundingClientRect();
+      p = Math.max(5, Math.min(95, ((clientX - r.left) / r.width) * 100));
+      wrap.style.setProperty('--p', p + '%');
     }
+    wrap.addEventListener('mousedown', e => { dragging = true; setP(e.clientX); e.preventDefault(); });
+    window.addEventListener('mousemove', e => { if (dragging) setP(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+    wrap.addEventListener('touchstart', e => { dragging = true; setP(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', e => { if (dragging) setP(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { dragging = false; });
+  }
+  ['ba1','ba2','ba3'].forEach(makeSlider);
 
-    ['ba1', 'ba2', 'ba3'].forEach(initSlider);
+  // ── NAV SCROLL ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('compact', scrollY > 80);
+  });
 
-    // ─── TESTIMONIALS CAROUSEL ───
-    const cards = document.querySelectorAll('.testimonial-card');
-    const dots = document.querySelectorAll('.dot');
-    let current = 0;
+  // ── BURGER ──
+  document.getElementById('burger').addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    const open = links.style.display === 'flex';
+    Object.assign(links.style, open
+      ? { display: 'none' }
+      : { display:'flex', flexDirection:'column', position:'absolute', top:'72px', left:0, right:0, background:'rgba(12,12,12,0.97)', padding:'24px 32px', gap:'20px' }
+    );
+  });
 
-    function goToSlide(i) {
-      cards[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = i;
-      cards[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-
-    window.goToSlide = goToSlide;
-
-    let autoSlide = setInterval(() => { goToSlide((current + 1) % cards.length); }, 4500);
-    document.getElementById('testimonialsTrack').addEventListener('mouseenter', () => clearInterval(autoSlide));
-
-    // ─── NAVBAR SCROLL ───
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').style.padding =
-        window.scrollY > 60 ? '14px 64px' : '20px 64px';
-    });
-
-    // ─── HAMBURGER ───
-    window.toggleMenu = function(btn) {
-      const links = document.querySelector('.nav-links');
-      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-      links.style.flexDirection = 'column';
-      links.style.position = 'absolute';
-      links.style.top = '70px';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.background = 'rgba(10,10,10,0.97)';
-      links.style.padding = '24px 32px';
-      links.style.gap = '20px';
-    };
-
-    // ─── FORM SUBMIT ───
-    window.handleSubmit = function(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = '✓ Soumission envoyée — Nous vous répondons sous 48h';
-      btn.style.background = '#16a34a';
-      btn.disabled = true;
-    };
-  </script>
+  // ── FORM ──
+  window.handleForm = function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Demande envoyée — réponse sous 48h';
+    btn.style.background = '#16a34a';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+  };
+</script>
 </body>
 </html>
